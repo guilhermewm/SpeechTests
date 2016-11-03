@@ -31,8 +31,8 @@ $ionic serve
 If the registration view appear it's work.
 
 
-### Configuration ### 
-To run your app you should add a platform for IOS or Android:
+#Configuration 
+To run your app you should add a platform for Android:
 
 ```
 $ ionic platform add android
@@ -45,7 +45,7 @@ $ionic build android
 $ionic run android
 ```
 
-### Dependencies ###
+#Dependencies
 
 * Gulp - Tasks runner
 * cordova-plugin-tts - used to translate string into audio
