@@ -41,7 +41,6 @@ angular.module('starter', ['ionic'])
             $scope.split.map(function(p,index, array){
                 if(p === "cor"){
                   var corEscolhida = array[index+1];
-                  alert(corEscolhida);
                   $scope.color = $scope.dic.cor[corEscolhida];
                 }
                 if(p==="falar"){
