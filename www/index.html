@@ -49,12 +49,12 @@
           Speak!
         </button>
 
-        <button class="button button-full button-positive"ng-click="record()">
+        <button class="button button-full button-positive" ng-click="record()">
           Record
         </button>
-        <div class="card">
+        <div class="card" ng-repeat="item in items">
           <div class="item item-text-wrap">
-            {{recognizedText}}
+            {{item.name}}
           </div>
         </div>
       </ion-content>

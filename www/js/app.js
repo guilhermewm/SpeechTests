@@ -7,6 +7,7 @@ angular.module('starter', ['ionic'])
 
 .controller('AppCtrl', function($scope) {
 
+
   $scope.data = {
     speechText: ''
   };
@@ -20,9 +21,9 @@ angular.module('starter', ['ionic'])
       azul:"#00f"
     }
   };
-  $scope.speakText = function() {
+  $scope.speakText = function(text) {
     TTS.speak({
-           text: $scope.data.speechText,
+           text: text,
            locale: 'pt-BR',
            rate: 1.5
        }, function () {
@@ -31,28 +32,43 @@ angular.module('starter', ['ionic'])
            // Handle the error case
        });
   };
+  $scope.items = [];
   $scope.record = function() {
     var recognition = new SpeechRecognition();
     recognition.lang = 'pt-BR';
     recognition.onresult = function(event) {
         if (event.results.length > 0) {
             $scope.recognizedText = event.results[0][0].transcript;
+            $scope.recognizedText = $scope.recognizedText.toLowerCase();
             $scope.split = $scope.recognizedText.split(" ");
             $scope.split.map(function(p,index, array){
                 if(p === "cor"){
                   var corEscolhida = array[index+1];
-                  $scope.color = $scope.dic.cor[corEscolhida];
+                  corEscolhida = $scope.dic.cor[corEscolhida];
+                  if(corEscolhida === undefined){
+
+                  }
+
                 }
                 if(p==="falar"){
                   var fala =   $scope.recognizedText.split("falar ")[1];
                   $scope.data.speechText = fala;
                   $scope.speakText();
                 }
-                if(p==="Jarvis"){
+                if(p==="jarvis"){
                   $scope.data.speechText = "Como posso ajudá-lo João O Todo Poderoso?";
                   $scope.speakText();
                 }
+                if (p==="adicione" && array[index+1] ==="o" && array[index+2] === "item"){
+                  var name = $scope.recognizedText.split("adicione o item ")[1];
+                  var item = {
+                    name: name
+                  }
+                  $scope.items.push(item);
+                }
+
             })
+
             $scope.$apply();
         }
     };
