@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic'])
 
-.controller('AppCtrl', function($scope) {
+.controller('AppCtrl', function($scope, $timeout) {
 
 
   $scope.data = {
@@ -42,36 +42,54 @@ angular.module('starter', ['ionic'])
             $scope.recognizedText = $scope.recognizedText.toLowerCase();
             $scope.split = $scope.recognizedText.split(" ");
             $scope.split.map(function(p,index, array){
-                if(p === "cor"){
+              if(p === "jarvis"){
+                $scope.data.speechText = "Como posso Ajudar?";
+                  $scope.speakText($scope.data.speechText);
+                $scope.$apply();
+                
+              }else{
+              switch(p){
+                case "cor":
                   var corEscolhida = array[index+1];
                   corEscolhida = $scope.dic.cor[corEscolhida];
                   if(corEscolhida === undefined){
 
                   }
-
-                }
-                if(p==="falar"){
-                  var fala =   $scope.recognizedText.split("falar ")[1];
+                  $scope.$apply();
+                break;
+                case "falar":
+                  var fala = $scope.recognizedText.split("falar ")[1];
                   $scope.data.speechText = fala;
-                  $scope.speakText();
-                }
-                if(p==="jarvis"){
-                  $scope.data.speechText = "Como posso ajudá-lo João O Todo Poderoso?";
-                  $scope.speakText();
-                }
-                if (p==="adicione" && array[index+1] ==="o" && array[index+2] === "item"){
+                  $scope.speakText($scope.data.speechText);
+                  $scope.$apply();
+                break;
+                case "jarvis":
+                  $scope.data.speechText = "Como posso Ajudar?";
+                  $scope.speakText($scope.data.speechText);
+                  $scope.$apply();
+                break;
+                case "adicione" && array[index+1] ==="o" && array[index+2] === "item":
                   var name = $scope.recognizedText.split("adicione o item ")[1];
                   var item = {
                     name: name
                   }
                   $scope.items.push(item);
-                }
+                  $scope.$apply();
+                break;
 
+              }
+            }
+            init();
             })
 
-            $scope.$apply();
+            // $scope.$apply();
         }
     };
     recognition.start();
   };
+ var init = function() {
+    $scope.record();
+  };
+  // init();
+  $timeout(function(){init()}, 1500);
 });
