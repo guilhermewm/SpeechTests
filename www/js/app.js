@@ -63,7 +63,7 @@ angular.module('starter', ['ionic'])
 
               }else{
               switch(p){
-                case "cor":
+                case "cor"||"color":
                   var corEscolhida = array[index+1];
                   var hex = $scope.dic.cor[corEscolhida];
                   if(hex === undefined){
@@ -87,7 +87,7 @@ angular.module('starter', ['ionic'])
                   }
                   $scope.$apply();
                 break;
-                case "falar":
+                case "falar"||"speak":
                   var fala = $scope.recognizedText.split("falar ")[1];
                   $scope.data.speechText = fala;
                   $scope.speakText($scope.data.speechText);
@@ -98,8 +98,8 @@ angular.module('starter', ['ionic'])
                   $scope.speakText($scope.data.speechText);
                   $scope.$apply();
                 break;
-                case "adicione":
-                  if(array[index+1] ==="o" && array[index+2] === "item"){
+                case "adicione"||"add":
+                  if((array[index+1] ==="o" && array[index+2] === "item")||(array[index+1]==="item")){
                     var name = $scope.recognizedText.split("adicione o item ")[1];
                     var item = {
                       name: name
