@@ -8,7 +8,7 @@ angular.module('starter', ['ionic'])
 .controller('AppCtrl', function($scope, $timeout) {
 
   $scope.data = {
-    speechText: ''
+    speechText: '';
   };
   $scope.recognizedText = '';
   $scope.speakText = function(text) {
@@ -26,7 +26,7 @@ angular.module('starter', ['ionic'])
   $scope.speakTextColor = function(text, callback) {
     TTS.speak({
      text: text,
-     locale: "pt-BR",
+     locale: $scope.lang,
      rate: 1.5
    }, function () {
      callback();
@@ -35,37 +35,32 @@ angular.module('starter', ['ionic'])
          });
   };
 
-  function reco(callback){
+  $scope.record = function (callback){
     var recognition = new SpeechRecognition();
-    recognition.lang = "pt-BR";
+    recognition.lang = $scope.lang;
+
     callback(recognition);
   };
 
-  function results(event){
+  $scope.onresult = function (event){
 
     $scope.recognizedText = event.results[0][0].transcript.toLowerCase().split(" ");
-    var evt = event.results[0][0].transcript.toLowerCase();
-    $scope.recognizedText.forEach(function(item){
-      if(item === "falar"){
-        var fala = evt.split(item)[1];
-        alert(fala);
+    $scope.recognizedText.map(function(p, index, array){
+
+      if(p === "falar"){
+        var fala = $scope.recognizedText.split("falar ")[1];
         $scope.speakText(fala);
         $scope.$apply();
       };
 
     });
 
-  };
-
-  $scope.record = function (){
-    reco(function(data){
-      data.onresult = function(event){
-        console.log("Event:", JSON.stringify(event));
-        results(event);
-      };
+    $scope.record(function(data){
+      $scope.onresult(event);
       data.start();
-    });
+    })
+
+
   };
 
-  
 });

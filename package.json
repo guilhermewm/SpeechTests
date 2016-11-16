@@ -25,7 +25,8 @@
     {
       "locator": "https://github.com/macdonst/SpeechRecognitionPlugin",
       "id": "org.apache.cordova.speech.speechrecognition"
-    }
+    },
+    "cordova-plugin-tts@~0.2.3"
   ],
   "cordovaPlatforms": [
     "android"
