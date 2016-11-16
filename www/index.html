@@ -38,10 +38,15 @@
       <ion-header-bar class="bar-stable">
         <h1 class="title">Cordova Text-to-Speech</h1>
       </ion-header-bar>
-      <ion-content class="padding" >
+       <ion-content class="padding" style="background:{{color}}" >
         <button class="button button-full button-positive" ng-click="record()">
           Gravar
         </button>
+        <ul class="list" ng-repeat="item in items">
+          <li class="item">
+            {{item.name}}
+          </li>
+        </ul>
       </ion-content>
     </ion-pane>
 </body>
