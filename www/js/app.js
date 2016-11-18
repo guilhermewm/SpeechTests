@@ -34,9 +34,9 @@ angular.module('starter', ['ionic'])
      locale: lang,
      rate: 1.5
    }, function () {
-           // Do Something after success
+         // Do Something after success
          }, function (reason) {
-           // Handle the error case
+         // Handle the error case
          });
   };
 
@@ -71,17 +71,20 @@ angular.module('starter', ['ionic'])
         case 'falar':
           $scope.speakText(evt.split(item)[1]);
           $scope.$apply();
+          $scope.record();
         break;
         case 'jarvis':
           $scope.speakText("Como posso ajudar?");
           $scope.$apply();
+          $scope.record();
         break;
         case 'adicione':
           if((arr[index+1] ==="o" && arr[index+2] === "item") || (arr[index+1] === "item")){
 
             $scope.items.push({name: evt.split("adicione o item ")[1]});
             $scope.$apply();
-          
+            $scope.record();
+
           };
         break;
         case 'cor':
@@ -91,7 +94,6 @@ angular.module('starter', ['ionic'])
           $scope.$apply();
           if(!hex){
             $scope.speakText("Não reconheço a cor {"+corEscolhida+"} , informe o hexadecimal?");
-            
             if(data){
               data.onresult = function(events){
                 var newColor = events.results[0][0].transcript;
@@ -102,10 +104,10 @@ angular.module('starter', ['ionic'])
               };
               data.start();
             }
-            
+
           }
-          
-          $scope.$apply();
+
+          //$scope.$apply();
         break;
         default:
           console.log(item);
@@ -118,6 +120,7 @@ angular.module('starter', ['ionic'])
   };
 
   $scope.record = function (){
+
     reco(function(data){
       data.onresult = function(event){
         console.log("Event:", JSON.stringify(event));
@@ -127,5 +130,13 @@ angular.module('starter', ['ionic'])
     });
   };
 
-  
+  var init = function(){
+    $scope.record();
+  }
+
+  $timeout(function () {
+    init();
+  }, 1500);
+
+
 });
