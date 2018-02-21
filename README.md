@@ -2,7 +2,7 @@
 
 Ionic speech test
 
-###Version: 1.0.0#
+### Version: 1.0.0#
 
 ### What is this repository for? ###
 
@@ -11,7 +11,7 @@ Ionic speech test
 * [Configuration](#Configuration)
 * [Dependencies](#Dependencies)
 
-###Installation 
+### Installation 
 
 To install the project follow this instructions:
 ```
