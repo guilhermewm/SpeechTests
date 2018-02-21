@@ -1,8 +1,8 @@
-# Ionic Speech Test #
+# Ionic Speech Test
 
 Ionic speech test
 
-### Version: 1.0.0#
+### Version: 1.0.0
 
 ### What is this repository for? ###
 
@@ -14,7 +14,7 @@ Ionic speech test
 ### Installation 
 
 To install the project follow this instructions:
-```
+```bash
 $ git clone https://github.com/guilhermewm/SpeechTests.git
 $ cd SpeechTests
 $ npm install
@@ -24,28 +24,28 @@ $ npm install -g ionic cordova gulp
 
 After this steps, the app is installed. To test if all dependencies were installed use:
 
-```
-$ionic serve
+```bash
+$ ionic serve
 ``` 
 
 If the registration view appear it's work.
 
 
-#Configuration 
+# Configuration 
 To run your app you should add a platform for Android:
 
-```
+```bash
 $ ionic platform add android
 ```
 
 After this build and run:
 
-``` 
+```bash
 $ionic build android
 $ionic run android
 ```
 
-#Dependencies
+# Dependencies
 
 * Gulp - Tasks runner
 * cordova-plugin-tts - used to translate string into audio
